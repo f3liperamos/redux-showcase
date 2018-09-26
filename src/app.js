@@ -1,38 +1,49 @@
-const input = require('./input')
-const {store, actions} = require('./store-redux')
+const { store, actions } = require('./store-redux')
+const createElement = require('./create-element')
 
-const inputEventListeners = {
-  input(event) {
-    store.dispatch({
-      type: actions.INPUT_ACTION,
-      value: event.target.value
-    })
-  },
-  change(event) {
-    store.dispatch({
-      type: actions.INPUT_ACTION,
-      value: event.target.value
-    })
+const Container = createElement({ element: 'div', className: 'container' })
+const H1 = createElement({ element: 'h1', className: 'title' })
+H1.textContent = generateTitle()
+
+const Input1 = createElement({
+  element: 'input',
+  attributes: { autofocus: true, type: 'text' },
+  className: 'input',
+  eventListeners: {
+    input(event) {
+      store.dispatch({
+        type: actions.INPUT_ACTION,
+        value: event.target.value
+      })
+    }
   }
-}
+})
 
-const Input1 = input
-  .createElementWith({
-    attributes: { autofocus: true, type: 'text' },
-    eventListeners: inputEventListeners,
-    className: 'input'
-  })
-  .renderInto(window.document.body)
+const Input2 = createElement({
+  element: 'input',
+  attributes: { type: 'text' },
+  className: 'input2'
+})
 
-const Input2 = input
-  .createElementWith({
-    attributes: { autofocus: true, type: 'text' },
-    className: 'input2'
-  })
-  .renderInto(window.document.body)
+console.log(Input1)
 
-function updateView () {
-  Input2.element.value = store.getState().value.split('').reverse().join('')
+function updateView() {
+  const inputValue = store.getState().value
+
+  Input2.value = inputValue.split('').reverse().join('')
+  H1.textContent = generateTitle(inputValue)
 }
 
 store.subscribe(updateView)
+
+function generateTitle(value) {
+  return !value ? 'YARL.js' : `Hello, ${value}`
+}
+
+Container.appendChild(H1)
+Container.appendChild(Input1)
+Container.appendChild(Input2)
+
+
+
+window.document.body.appendChild(Container)
