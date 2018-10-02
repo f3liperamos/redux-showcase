@@ -4,7 +4,29 @@
 	<title>Redux</title>
   <link rel="stylesheet" type="text/css" href="src/app.css">
 </head>
-<body class="app">
-	<script type="text/javascript" src="dist/bundle.js"></script>
+<body>
+  <div class="app">
+    <header class="main-header">
+      <h1 class="title">REDUX</h1>
+    </header>
+    <pre class="current-state"></pre>
+    <section class="main-content">
+      <fieldset>
+          <label>Main input</label>
+          <input name="main-input" autofocus type="text" class="input" />
+
+          <label>Mirror input</label>
+          <input name="mirror-input" type="text" class="input" />
+      </fieldset>
+
+      <fieldset>
+        <label for="light-switch">Light switch</label>
+        <input id="light-switch" name="light-switch" type="checkbox" class="checkbox" />
+      </fieldset>
+
+    </section>
+  </div>
+
+  <script type="text/javascript" src="dist/bundle.js"></script>
 </body>
 </html>
