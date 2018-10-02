@@ -8,5 +8,5 @@ module.exports = function updateLights() {
 }
 
 document.querySelector('[name=light-switch]').addEventListener('input', function ({ target }) {
-  store.dispatch({ type: actions.TOGGLE_LIGHT, value: target.checked })
+  store.dispatch({ type: actions.TOGGLE_LIGHT, value: !target.checked })
 })
