@@ -6,30 +6,16 @@
 </head>
 <body>
   <div class="app">
-    <pre class="current-state"></pre>
-    <section class="content">
-      <header class="header">
-        <h1 class="title">REDUX</h1>
-      </header>
-      <section class="give-better-name">
-        <fieldset>
-          <label>Main input</label>
-          <input name="main-input" autofocus type="text" class="input" />
-        </fieldset>
-
-        <fieldset>
-          <label>Mirror input</label>
-          <input name="mirror-input" type="text" class="input" />
-        </fieldset>
-
-        <fieldset>
-          <input id="light-switch" name="light-switch" type="checkbox" class="checkbox" checked />
-          <label for="light-switch">Light switch</label>
-        </fieldset>
-      </section>
-    </section>
+    <header class="header">
+      <h1 class="title">REDUX</h1>
+    </header>
+    <fieldset class="add-task-box">
+      <label>Add task</label>
+      <input autofocus type="text" class="add-task-input" />
+      <button type="button" class="add-task-button">Submit task</button>
+    </fieldset>
+    <section class="state"></section>
   </div>
-
   <script type="text/javascript" src="dist/bundle.js"></script>
 </body>
 </html>

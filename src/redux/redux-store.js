@@ -1,15 +1,17 @@
-const { createStore } = require('redux')
+const { createStore } = require('./redux')
 
-const actions = {
-  INPUT_ACTION: Symbol('INPUT_ACTION'),
-  TOGGLE_LIGHT: Symbol('TOGGLE_LIGHT'),
+const initialState = {
+  taskList: []
 }
 
-function reducer (state = {}, action) {
-  return {
-    inputValue: inputValueReducer(state.inputValue, action),
-    light: lightReducer(state.light, action)
+function reducer (state = initialState, action) {
+  if (action.type === 'ADD_TASK') {
+    return {
+      taskList: state.taskList.concat({ name: action.task })
+    }
   }
+
+  return state
 }
 
 function inputValueReducer(state = "", { type, value }) {
@@ -17,14 +19,11 @@ function inputValueReducer(state = "", { type, value }) {
   return state
 }
 
-function lightReducer(state = true, { type, value }) {
-  if (type === actions.TOGGLE_LIGHT) return value
-  return state
-}
+// function lightReducer(state = true, { type, value }) {
+//   if (type === actions.TOGGLE_LIGHT) return value
+//   return state
+// }
 
-const store = createStore(reducer)
+const store = createStore(reducer, { taskList: ["this.state"] })
 
-module.exports = {
-  actions,
-  store
-}
+module.exports = { store }
